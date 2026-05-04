@@ -1,410 +1,537 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Automation Hub – AAF Gorpara</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"/>
-  <style>
-    :root {
-      --cream: #faf8f4;
-      --white: #ffffff;
-      --ink: #1a1a2e;
-      --ink-light: #4a4a6a;
-      --accent: #e8703a;
-      --accent-soft: #fff0e8;
-      --accent2: #3a7bd5;
-      --accent2-soft: #eaf1fb;
-      --accent3: #2ecc8f;
-      --accent3-soft: #e6faf4;
-      --accent4: #9b59b6;
-      --accent4-soft: #f5eefb;
-      --border: #e8e4dc;
-      --shadow: 0 4px 24px rgba(30,30,60,0.07);
-      --shadow-lg: 0 12px 48px rgba(30,30,60,0.13);
-    }
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Automation Hub – AAF Gorpara</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
+	<style>
+		:root {
+			--cream: #faf8f4;
+			--white: #ffffff;
+			--ink: #1a1a2e;
+			--ink-light: #4a4a6a;
+			--accent: #e8703a;
+			--accent-soft: #fff0e8;
+			--accent2: #3a7bd5;
+			--accent2-soft: #eaf1fb;
+			--accent3: #2ecc8f;
+			--accent3-soft: #e6faf4;
+			--accent4: #9b59b6;
+			--accent4-soft: #f5eefb;
+			--border: #e8e4dc;
+			--shadow: 0 4px 24px rgba(30, 30, 60, 0.07);
+			--shadow-lg: 0 12px 48px rgba(30, 30, 60, 0.13);
+		}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--ink);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+		body {
+			font-family: 'DM Sans', sans-serif;
+			background: var(--cream);
+			color: var(--ink);
+			min-height: 100vh;
+			overflow-x: hidden;
+		}
 
-    /* ─── NOISE TEXTURE OVERLAY ─── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-    }
+		/* ─── NOISE TEXTURE OVERLAY ─── */
+		body::before {
+			content: '';
+			position: fixed;
+			inset: 0;
+			background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+			pointer-events: none;
+			z-index: 0;
+		}
 
-   
 
-   
 
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 700;
-      color: var(--ink);
-      letter-spacing: -0.01em;
-      margin-bottom: 8px;
-    }
 
-    .section-sub {
-      color: var(--ink-light);
-      font-size: 0.95rem;
-      font-weight: 400;
-    }
 
-    /* ─── CARDS ─── */
-    .cards-section { padding: 20px 0 30px; }
+		.section-title {
+			font-family: 'Playfair Display', serif;
+			font-size: clamp(1.6rem, 3vw, 2.2rem);
+			font-weight: 700;
+			color: var(--ink);
+			letter-spacing: -0.01em;
+			margin-bottom: 8px;
+		}
 
-    .auto-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: var(--shadow);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
+		.section-sub {
+			color: var(--ink-light);
+			font-size: 0.95rem;
+			font-weight: 400;
+		}
 
-    .auto-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      border-radius: 20px 20px 0 0;
-      transition: opacity 0.2s;
-    }
+		/* ─── CARDS ─── */
+		.cards-section {
+			padding: 20px 0 30px;
+		}
 
-    .card-1::before { background: linear-gradient(90deg, var(--accent), #f0a070); }
-    .card-2::before { background: linear-gradient(90deg, var(--accent2), #5b9ae8); }
-    .card-3::before { background: linear-gradient(90deg, var(--accent3), #5ee0b0); }
-    .card-4::before { background: linear-gradient(90deg, var(--accent4), #c07de0); }
+		.auto-card {
+			background: var(--white);
+			border: 1px solid var(--border);
+			border-radius: 20px;
+			padding: 32px;
+			box-shadow: var(--shadow);
+			transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			position: relative;
+			overflow: hidden;
+		}
 
-    .auto-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-    }
+		.auto-card::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 4px;
+			border-radius: 20px 20px 0 0;
+			transition: opacity 0.2s;
+		}
 
-    .card-1:hover { border-color: #f5c5a5; }
-    .card-2:hover { border-color: #b0ccf5; }
-    .card-3:hover { border-color: #a0e8cc; }
-    .card-4:hover { border-color: #d0a0f0; }
+		.card-1::before {
+			background: linear-gradient(90deg, var(--accent), #f0a070);
+		}
 
-    .card-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--ink-light);
-      opacity: 0.5;
-      margin-bottom: 18px;
-    }
+		.card-2::before {
+			background: linear-gradient(90deg, var(--accent2), #5b9ae8);
+		}
 
-    .card-icon-wrap {
-      width: 52px; height: 52px;
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-      margin-bottom: 20px;
-      flex-shrink: 0;
-    }
+		.card-3::before {
+			background: linear-gradient(90deg, var(--accent3), #5ee0b0);
+		}
 
-    .icon-1 { background: var(--accent-soft); color: var(--accent); }
-    .icon-2 { background: var(--accent2-soft); color: var(--accent2); }
-    .icon-3 { background: var(--accent3-soft); color: var(--accent3); }
-    .icon-4 { background: var(--accent4-soft); color: var(--accent4); }
+		.card-4::before {
+			background: linear-gradient(90deg, var(--accent4), #c07de0);
+		}
 
-    .card-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.3;
-      margin-bottom: 10px;
-    }
+		.auto-card:hover {
+			transform: translateY(-6px);
+			box-shadow: var(--shadow-lg);
+		}
 
-    .card-desc {
-      font-size: 0.875rem;
-      color: var(--ink-light);
-      line-height: 1.65;
-      flex: 1;
-    }
+		.card-1:hover {
+			border-color: #f5c5a5;
+		}
 
-    .card-footer-area {
-      margin-top: 26px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+		.card-2:hover {
+			border-color: #b0ccf5;
+		}
 
-    .btn-launch {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 11px 22px;
-      border-radius: 10px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-    }
+		.card-3:hover {
+			border-color: #a0e8cc;
+		}
 
-    .btn-1  { background: var(--accent); color: #fff; }
-    .btn-1:hover  { background: #d4602a; color: #fff; }
-    .btn-2  { background: var(--accent2); color: #fff; }
-    .btn-2:hover  { background: #2c6abf; color: #fff; }
-    .btn-3  { background: var(--accent3); color: #fff; }
-    .btn-3:hover  { background: #25b07a; color: #fff; }
-    .btn-4  { background: var(--accent4); color: #fff; }
-    .btn-4:hover  { background: #8040a0; color: #fff; }
+		.card-4:hover {
+			border-color: #d0a0f0;
+		}
 
-    .btn-repo {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 9px 22px;
-      border-radius: 10px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      text-decoration: none;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--ink-light);
-      transition: all 0.2s;
-      width: 100%;
-    }
+		.card-number {
+			font-family: 'Playfair Display', serif;
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 0.1em;
+			color: var(--ink-light);
+			opacity: 0.5;
+			margin-bottom: 18px;
+		}
 
-    .btn-repo:hover {
-      background: var(--cream);
-      border-color: #ccc;
-      color: var(--ink);
-    }
+		.card-icon-wrap {
+			width: 52px;
+			height: 52px;
+			border-radius: 14px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 22px;
+			margin-bottom: 20px;
+			flex-shrink: 0;
+		}
 
-    /* ─── FOOTER ─── */
-    .site-footer {
-      background: var(--white);
-      border-top: 1px solid var(--border);
-      padding: 32px 0 24px;
-    }
+		.icon-1 {
+			background: var(--accent-soft);
+			color: var(--accent);
+		}
 
-    .footer-bottom {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
+		.icon-2 {
+			background: var(--accent2-soft);
+			color: var(--accent2);
+		}
 
-    .footer-org {
-      font-size: 0.78rem;
-      color: var(--ink-light);
-      line-height: 1.6;
-    }
+		.icon-3 {
+			background: var(--accent3-soft);
+			color: var(--accent3);
+		}
 
-    .footer-org strong {
-      color: var(--ink);
-      font-weight: 600;
-    }
+		.icon-4 {
+			background: var(--accent4-soft);
+			color: var(--accent4);
+		}
 
-    .footer-links {
-      display: flex;
-      gap: 20px;
-    }
+		.card-title {
+			font-family: 'Playfair Display', serif;
+			font-size: 1.15rem;
+			font-weight: 700;
+			color: var(--ink);
+			line-height: 1.3;
+			margin-bottom: 10px;
+		}
 
-    .footer-links a {
-      font-size: 0.78rem;
-      color: var(--ink-light);
-      text-decoration: none;
-      transition: color 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
+		.card-desc {
+			font-size: 0.875rem;
+			color: var(--ink-light);
+			line-height: 1.65;
+			flex: 1;
+		}
 
-    .footer-links a:hover { color: var(--accent); }
+		.card-footer-area {
+			margin-top: 26px;
+			padding-top: 20px;
+			border-top: 1px solid var(--border);
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
 
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+		.btn-launch {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			padding: 11px 22px;
+			border-radius: 10px;
+			font-size: 0.875rem;
+			font-weight: 600;
+			text-decoration: none;
+			transition: all 0.2s;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+		}
 
-    .fade-up { animation: fadeUp 0.55s ease both; }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.32s; }
-    .delay-4 { animation-delay: 0.44s; }
+		.btn-1 {
+			background: var(--accent);
+			color: #fff;
+		}
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 576px) {
-      .footer-bottom { flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+		.btn-1:hover {
+			background: #d4602a;
+			color: #fff;
+		}
+
+		.btn-2 {
+			background: var(--accent2);
+			color: #fff;
+		}
+
+		.btn-2:hover {
+			background: #2c6abf;
+			color: #fff;
+		}
+
+		.btn-3 {
+			background: var(--accent3);
+			color: #fff;
+		}
+
+		.btn-3:hover {
+			background: #25b07a;
+			color: #fff;
+		}
+
+		.btn-4 {
+			background: var(--accent4);
+			color: #fff;
+		}
+
+		.btn-4:hover {
+			background: #8040a0;
+			color: #fff;
+		}
+
+		.btn-repo {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			padding: 9px 22px;
+			border-radius: 10px;
+			font-size: 0.8rem;
+			font-weight: 500;
+			text-decoration: none;
+			background: transparent;
+			border: 1px solid var(--border);
+			color: var(--ink-light);
+			transition: all 0.2s;
+			width: 100%;
+		}
+
+		.btn-repo:hover {
+			background: var(--cream);
+			border-color: #ccc;
+			color: var(--ink);
+		}
+
+		/* ─── FOOTER ─── */
+		.site-footer {
+			background: var(--white);
+			border-top: 1px solid var(--border);
+			padding: 32px 0 24px;
+		}
+
+		.footer-bottom {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+		}
+
+		.footer-org {
+			font-size: 0.78rem;
+			color: var(--ink-light);
+			line-height: 1.6;
+		}
+
+		.footer-org strong {
+			color: var(--ink);
+			font-weight: 600;
+		}
+
+		.footer-links {
+			display: flex;
+			gap: 20px;
+		}
+
+		.footer-links a {
+			font-size: 0.78rem;
+			color: var(--ink-light);
+			text-decoration: none;
+			transition: color 0.2s;
+			display: inline-flex;
+			align-items: center;
+			gap: 5px;
+		}
+
+		.footer-links a:hover {
+			color: var(--accent);
+		}
+
+		/* ─── ANIMATIONS ─── */
+		@keyframes fadeUp {
+			from {
+				opacity: 0;
+				transform: translateY(24px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.fade-up {
+			animation: fadeUp 0.55s ease both;
+		}
+
+		.delay-1 {
+			animation-delay: 0.1s;
+		}
+
+		.delay-2 {
+			animation-delay: 0.2s;
+		}
+
+		.delay-3 {
+			animation-delay: 0.32s;
+		}
+
+		.delay-4 {
+			animation-delay: 0.44s;
+		}
+
+		/* ─── RESPONSIVE ─── */
+		@media (max-width: 576px) {
+			.footer-bottom {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+		}
+	</style>
 </head>
+
 <body>
-  <!-- ═══════════ CARDS ═══════════ -->
-  <section class="cards-section" id="portals">
-    <div class="container">
-      <!-- Section Header -->
-      <div class="row mb-3">
-        <div class="col-lg-12">
-          <h2 class="section-title">AAF - Gorpara | Automation Portals</h2>
-          <p class="section-sub">You don't always need expensive enterprise software to solve operational bottlenecks.
-        Sometimes, a smart idea and a script are all you need.</p>
-        </div>
-      </div>
+	<!-- ═══════════ CARDS ═══════════ -->
+	<section class="cards-section" id="portals">
+		<div class="container">
+			<!-- Section Header -->
+			<div class="row mb-3">
+				<div class="col-lg-12">
+					<h2 class="section-title">AAF - Gorpara | Automation Portals</h2>
+					<p class="section-sub">You don't always need expensive enterprise software to solve operational
+						bottlenecks.
+						Sometimes, a smart idea and a script are all you need.</p>
+				</div>
+			</div>
 
-      <!-- Cards Row -->
-      <div class="row g-4">
+			<!-- Cards Row -->
+			<div class="row g-4">
 
-        <!-- Card 1 -->
-        <div class="col-md-6 col-xl-3 fade-up delay-1">
-          <div class="auto-card card-1">
-            <div class="card-number">AUTOMATION — 01</div>
-            <div class="card-icon-wrap icon-1">
-              <i class="fa-solid fa-chart-bar"></i>
-            </div>
-            <h3 class="card-title">Section Wise Daily Per Hour Production Report</h3>
-            <p class="card-desc">Tracks hourly production output section-by-section. Auto-generates structured daily reports, eliminating manual tabulation and reducing reporting lag.</p>
-            <div class="card-footer-area">
-              <a href="https://script.google.com/a/macros/brac.net/s/AKfycbxp3LXb9Zcs4fl_i6-KyRB8mXF5Xm_dsKgz5f5C9MaLoK5KP5KIzDy3-sHQRNi_UZTMPg/exec" target="_blank" class="btn-launch btn-1">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Portal
-              </a>
-              <a href="https://github.com/bashir-CSE/Section-Wise-Daily-Per-Hour-Production-Report---AAF" target="_blank" class="btn-repo">
-                <i class="fa-brands fa-github"></i> View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
+				<!-- Card 1 -->
+				<div class="col-md-6 col-xl-3 fade-up delay-1">
+					<div class="auto-card card-1">
+						<div class="card-number">AUTOMATION — 01</div>
+						<div class="card-icon-wrap icon-1">
+							<i class="fa-solid fa-chart-bar"></i>
+						</div>
+						<h3 class="card-title">Section Wise Daily Per Hour Production Report</h3>
+						<p class="card-desc">Tracks hourly production output section-by-section. Auto-generates
+							structured daily reports, eliminating manual tabulation and reducing reporting lag.</p>
+						<div class="card-footer-area">
+							<a href="https://script.google.com/a/macros/brac.net/s/AKfycbxp3LXb9Zcs4fl_i6-KyRB8mXF5Xm_dsKgz5f5C9MaLoK5KP5KIzDy3-sHQRNi_UZTMPg/exec"
+								target="_blank" class="btn-launch btn-1">
+								<i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Portal
+							</a>
+							<a href="https://github.com/bashir-CSE/Section-Wise-Daily-Per-Hour-Production-Report---AAF"
+								target="_blank" class="btn-repo">
+								<i class="fa-brands fa-github"></i> View on GitHub
+							</a>
+						</div>
+					</div>
+				</div>
 
-        <!-- Card 2 -->
-        <div class="col-md-6 col-xl-3 fade-up delay-2">
-          <div class="auto-card card-2">
-            <div class="card-number">AUTOMATION — 02</div>
-            <div class="card-icon-wrap icon-2">
-              <i class="fa-solid fa-clipboard-list"></i>
-            </div>
-            <h3 class="card-title">Paperless Production Planning Portal</h3>
-            <p class="card-desc">A digital-first planning portal that replaces paper-based workflows. Enables planners to allocate, schedule, and track production tasks from a single interface.</p>
-            <div class="card-footer-area">
-              <a href="https://script.google.com/macros/s/AKfycbwrXmZSX4KyUq3JNnaZu_D5VaFGrvZNQUEom-axTn1T7uaZXw-6LSq171KWMYG21q2b/exec" target="_blank" class="btn-launch btn-2">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Portal
-              </a>
-              <a href="https://github.com/bashir-CSE/Production-Planner-AAF-Gorpara" target="_blank" class="btn-repo">
-                <i class="fa-brands fa-github"></i> View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
+				<!-- Card 2 -->
+				<div class="col-md-6 col-xl-3 fade-up delay-2">
+					<div class="auto-card card-2">
+						<div class="card-number">AUTOMATION — 02</div>
+						<div class="card-icon-wrap icon-2">
+							<i class="fa-solid fa-clipboard-list"></i>
+						</div>
+						<h3 class="card-title">Paperless Production Planning Portal</h3>
+						<p class="card-desc">A digital-first planning portal that replaces paper-based workflows.
+							Enables planners to allocate, schedule, and track production tasks from a single interface.
+						</p>
+						<div class="card-footer-area">
+							<a href="https://script.google.com/macros/s/AKfycbwrXmZSX4KyUq3JNnaZu_D5VaFGrvZNQUEom-axTn1T7uaZXw-6LSq171KWMYG21q2b/exec"
+								target="_blank" class="btn-launch btn-2">
+								<i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Portal
+							</a>
+							<a href="https://github.com/bashir-CSE/Production-Planner-AAF-Gorpara" target="_blank"
+								class="btn-repo">
+								<i class="fa-brands fa-github"></i> View on GitHub
+							</a>
+						</div>
+					</div>
+				</div>
 
-        <!-- Card 3 -->
-        <div class="col-md-6 col-xl-3 fade-up delay-3">
-          <div class="auto-card card-3">
-            <div class="card-number">AUTOMATION — 03</div>
-            <div class="card-icon-wrap icon-3">
-              <i class="fa-solid fa-receipt"></i>
-            </div>
-            <h3 class="card-title">Snack's Bill Generator (নাস্তার বিল)</h3>
-            <p class="card-desc">Automates snack billing for daily canteen or refreshment claims. Instantly generates formatted bills, saving time for both requesters and approvers.</p>
-            <div class="card-footer-area">
-              <a href="https://script.google.com/macros/s/AKfycbwrXmZSX4KyUq3JNnaZu_D5VaFGrvZNQUEom-axTn1T7uaZXw-6LSq171KWMYG21q2b/exec" target="_blank" class="btn-launch btn-3">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Portal
-              </a>
-              <a href="https://github.com/bashir-CSE/Snack-s-Bill-Generator-for-Gorpara" target="_blank" class="btn-repo">
-                <i class="fa-brands fa-github"></i> View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
+				<!-- Card 3 -->
+				<div class="col-md-6 col-xl-3 fade-up delay-3">
+					<div class="auto-card card-3">
+						<div class="card-number">AUTOMATION — 03</div>
+						<div class="card-icon-wrap icon-3">
+							<i class="fa-solid fa-receipt"></i>
+						</div>
+						<h3 class="card-title">Snack's Bill Generator (নাস্তার বিল)</h3>
+						<p class="card-desc">Automates snack billing for daily canteen or refreshment claims. Instantly
+							generates formatted bills, saving time for both requesters and approvers.</p>
+						<div class="card-footer-area">
+							<a href="https://script.google.com/a/macros/brac.net/s/AKfycbyWQmY8zlVSarYIEpRdgk0F8E09VQjWd_e3NJMr4sfu75TJXw_QOYmOoiU4hx6-YtbM/exec"
+								target="_blank" class="btn-launch btn-3">
+								<i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Portal
+							</a>
+							<a href="https://github.com/bashir-CSE/Snack-s-Bill-Generator-for-Gorpara" target="_blank"
+								class="btn-repo">
+								<i class="fa-brands fa-github"></i> View on GitHub
+							</a>
+						</div>
+					</div>
+				</div>
 
-        <!-- Card 4 -->
-        <div class="col-md-6 col-xl-3 fade-up delay-4">
-          <div class="auto-card card-4">
-            <div class="card-number">AUTOMATION — 04</div>
-            <div class="card-icon-wrap icon-4">
-              <i class="fa-solid fa-car-side"></i>
-            </div>
-            <h3 class="card-title">Travel Bill Generator (যাতায়াত বিল)</h3>
-            <p class="card-desc">Simplifies travel expense claims by auto-calculating and formatting travel bills. Reduces errors and speeds up reimbursement workflows for field staff.</p>
-            <div class="card-footer-area">
-              <a href="https://script.google.com/macros/s/AKfycbyS8zJyywJ4ipm_7X_3RZVYi2JR4712xgJOFIccU-T8QfVAx0SdlCsBlodkSFYa3i11/exec" target="_blank" class="btn-launch btn-4">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Portal
-              </a>
-              <a href="https://github.com/bashir-CSE/AAF-Travell-bill-generator/tree/main" target="_blank" class="btn-repo">
-                <i class="fa-brands fa-github"></i> View on GitHub
-              </a>
-            </div>
-          </div>
-        </div>
+				<!-- Card 4 -->
+				<div class="col-md-6 col-xl-3 fade-up delay-4">
+					<div class="auto-card card-4">
+						<div class="card-number">AUTOMATION — 04</div>
+						<div class="card-icon-wrap icon-4">
+							<i class="fa-solid fa-car-side"></i>
+						</div>
+						<h3 class="card-title">Travel Bill Generator (যাতায়াত বিল)</h3>
+						<p class="card-desc">Simplifies travel expense claims by auto-calculating and formatting travel
+							bills. Reduces errors and speeds up reimbursement workflows for field staff.</p>
+						<div class="card-footer-area">
+							<a href="https://script.google.com/macros/s/AKfycbyS8zJyywJ4ipm_7X_3RZVYi2JR4712xgJOFIccU-T8QfVAx0SdlCsBlodkSFYa3i11/exec"
+								target="_blank" class="btn-launch btn-4">
+								<i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Portal
+							</a>
+							<a href="https://github.com/bashir-CSE/AAF-Travell-bill-generator/tree/main" target="_blank"
+								class="btn-repo">
+								<i class="fa-brands fa-github"></i> View on GitHub
+							</a>
+						</div>
+					</div>
+				</div>
 
-      </div><!-- /row -->
-    </div>
-  </section>
+			</div><!-- /row -->
+		</div>
+	</section>
 
-  <!-- ═══════════ FOOTER ═══════════ -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <div class="footer-org">
-          © 2026 <strong>Ayesha Abed Foundation</strong> — Gorpara, Manikganj. All rights reserved.
-        </div>
-        <div class="footer-links">
-          <a href="https://github.com/bashir-CSE" target="_blank">
-            <i class="fa-brands fa-github"></i> GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/bashir-6923131b0/" target="_blank">
-            <i class="fa-brands fa-linkedin-in"></i> LinkedIn
-          </a>
-          <a href="mailto:babashir8811@gmail.com">
-            <i class="fa-solid fa-envelope"></i> Contact
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
+	<!-- ═══════════ FOOTER ═══════════ -->
+	<footer class="site-footer">
+		<div class="container">
+			<div class="footer-bottom">
+				<div class="footer-org">
+					© 2026 <strong>Ayesha Abed Foundation</strong> — Gorpara, Manikganj. All rights reserved.
+				</div>
+				<div class="footer-links">
+					<a href="https://github.com/bashir-CSE" target="_blank">
+						<i class="fa-brands fa-github"></i> GitHub
+					</a>
+					<a href="https://www.linkedin.com/in/bashir-6923131b0/" target="_blank">
+						<i class="fa-brands fa-linkedin-in"></i> LinkedIn
+					</a>
+					<a href="mailto:babashir8811@gmail.com">
+						<i class="fa-solid fa-envelope"></i> Contact
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // ── Intersection Observer for scroll-triggered fade-up ──
-    const fadeEls = document.querySelectorAll('.fade-up');
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; } });
-    }, { threshold: 0.1 });
-    fadeEls.forEach(el => obs.observe(el));
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+	<script>
+		// ── Intersection Observer for scroll-triggered fade-up ──
+		const fadeEls = document.querySelectorAll('.fade-up');
+		const obs = new IntersectionObserver((entries) => {
+			entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; } });
+		}, { threshold: 0.1 });
+		fadeEls.forEach(el => obs.observe(el));
 
-    // ── Smooth scroll for anchor links ──
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
+		// ── Smooth scroll for anchor links ──
+		document.querySelectorAll('a[href^="#"]').forEach(a => {
+			a.addEventListener('click', e => {
+				const target = document.querySelector(a.getAttribute('href'));
+				if (target) {
+					e.preventDefault();
+					target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				}
+			});
+		});
+	</script>
 </body>
+
 </html>
