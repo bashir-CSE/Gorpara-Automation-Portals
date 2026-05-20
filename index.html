@@ -1,382 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Automation Hub – AAF Gorpara</title>
+	<meta name="description" content="Centralized portal for AAF Gorpara automation tools. Streamline operations with Google Apps Script powered solutions for production tracking, planning, billing, and attendance management." />
+	<meta name="keywords" content="automation, AAF Gorpara, Google Apps Script, production planning, attendance bonus, travel bill, snacks bill, efficiency tools" />
+	<meta name="author" content="Bashir" />
+	<meta name="robots" content="index, follow" />
+	
+	<!-- Open Graph Meta Tags -->
+	<meta property="og:title" content="Automation Hub – AAF Gorpara" />
+	<meta property="og:description" content="Centralized portal for AAF Gorpara automation tools. Streamline operations with Google Apps Script powered solutions." />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://github.com/bashir-CSE/Gorpara-Automation-Portals" />
+	<meta property="og:image" content="https://via.placeholder.com/1200x630/3a7bd5/ffffff?text=AAF+Automation+Hub" />
+	<meta property="og:site_name" content="AAF Gorpara Automation Hub" />
+	
+	<!-- Twitter Card Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Automation Hub – AAF Gorpara" />
+	<meta name="twitter:description" content="Centralized portal for AAF Gorpara automation tools" />
+	<meta name="twitter:image" content="https://via.placeholder.com/1200x630/3a7bd5/ffffff?text=AAF+Automation+Hub" />
+	
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link
 		href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
 		rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
-	<style>
-		:root {
-			--cream: #faf8f4;
-			--white: #ffffff;
-			--ink: #1a1a2e;
-			--ink-light: #4a4a6a;
-			--accent: #e8703a;
-			--accent-soft: #fff0e8;
-			--accent2: #3a7bd5;
-			--accent2-soft: #eaf1fb;
-			--accent3: #2ecc8f;
-			--accent3-soft: #e6faf4;
-			--accent4: #9b59b6;
-			--accent4-soft: #f5eefb;
-			--border: #e8e4dc;
-			--shadow: 0 4px 24px rgba(30, 30, 60, 0.07);
-			--shadow-lg: 0 12px 48px rgba(30, 30, 60, 0.13);
-		}
-
-		*,
-		*::before,
-		*::after {
-			box-sizing: border-box;
-			margin: 0;
-			padding: 0;
-		}
-
-		body {
-			font-family: 'DM Sans', sans-serif;
-			background: var(--cream);
-			color: var(--ink);
-			min-height: 100vh;
-			overflow-x: hidden;
-		}
-
-		/* ─── NOISE TEXTURE OVERLAY ─── */
-		body::before {
-			content: '';
-			position: fixed;
-			inset: 0;
-			background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-			pointer-events: none;
-			z-index: 0;
-		}
-
-
-
-
-
-		.section-title {
-			font-family: 'Playfair Display', serif;
-			font-size: clamp(1.6rem, 3vw, 2.2rem);
-			font-weight: 700;
-			color: var(--ink);
-			letter-spacing: -0.01em;
-			margin-bottom: 8px;
-		}
-
-		.section-sub {
-			color: var(--ink-light);
-			font-size: 0.95rem;
-			font-weight: 400;
-		}
-
-		/* ─── CARDS ─── */
-		.cards-section {
-			padding: 20px 0 30px;
-		}
-
-		.auto-card {
-			background: var(--white);
-			border: 1px solid var(--border);
-			border-radius: 20px;
-			padding: 32px;
-			box-shadow: var(--shadow);
-			transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
-			height: 100%;
-			display: flex;
-			flex-direction: column;
-			position: relative;
-			overflow: hidden;
-		}
-
-		.auto-card::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			height: 4px;
-			border-radius: 20px 20px 0 0;
-			transition: opacity 0.2s;
-		}
-
-		.card-1::before {
-			background: linear-gradient(90deg, var(--accent), #f0a070);
-		}
-
-		.card-2::before {
-			background: linear-gradient(90deg, var(--accent2), #5b9ae8);
-		}
-
-		.card-3::before {
-			background: linear-gradient(90deg, var(--accent3), #5ee0b0);
-		}
-
-		.card-4::before {
-			background: linear-gradient(90deg, var(--accent4), #c07de0);
-		}
-
-		.auto-card:hover {
-			transform: translateY(-6px);
-			box-shadow: var(--shadow-lg);
-		}
-
-		.card-1:hover {
-			border-color: #f5c5a5;
-		}
-
-		.card-2:hover {
-			border-color: #b0ccf5;
-		}
-
-		.card-3:hover {
-			border-color: #a0e8cc;
-		}
-
-		.card-4:hover {
-			border-color: #d0a0f0;
-		}
-
-		.card-number {
-			font-family: 'Playfair Display', serif;
-			font-size: 11px;
-			font-weight: 700;
-			letter-spacing: 0.1em;
-			color: var(--ink-light);
-			opacity: 0.5;
-			margin-bottom: 18px;
-		}
-
-		.card-icon-wrap {
-			width: 52px;
-			height: 52px;
-			border-radius: 14px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			font-size: 22px;
-			margin-bottom: 20px;
-			flex-shrink: 0;
-		}
-
-		.icon-1 {
-			background: var(--accent-soft);
-			color: var(--accent);
-		}
-
-		.icon-2 {
-			background: var(--accent2-soft);
-			color: var(--accent2);
-		}
-
-		.icon-3 {
-			background: var(--accent3-soft);
-			color: var(--accent3);
-		}
-
-		.icon-4 {
-			background: var(--accent4-soft);
-			color: var(--accent4);
-		}
-
-		.card-title {
-			font-family: 'Playfair Display', serif;
-			font-size: 1.15rem;
-			font-weight: 700;
-			color: var(--ink);
-			line-height: 1.3;
-			margin-bottom: 10px;
-		}
-
-		.card-desc {
-			font-size: 0.875rem;
-			color: var(--ink-light);
-			line-height: 1.65;
-			flex: 1;
-		}
-
-		.card-footer-area {
-			margin-top: 26px;
-			padding-top: 20px;
-			border-top: 1px solid var(--border);
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-		}
-
-		.btn-launch {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			gap: 8px;
-			padding: 11px 22px;
-			border-radius: 10px;
-			font-size: 0.875rem;
-			font-weight: 600;
-			text-decoration: none;
-			transition: all 0.2s;
-			border: none;
-			cursor: pointer;
-			width: 100%;
-		}
-
-		.btn-1 {
-			background: var(--accent);
-			color: #fff;
-		}
-
-		.btn-1:hover {
-			background: #d4602a;
-			color: #fff;
-		}
-
-		.btn-2 {
-			background: var(--accent2);
-			color: #fff;
-		}
-
-		.btn-2:hover {
-			background: #2c6abf;
-			color: #fff;
-		}
-
-		.btn-3 {
-			background: var(--accent3);
-			color: #fff;
-		}
-
-		.btn-3:hover {
-			background: #25b07a;
-			color: #fff;
-		}
-
-		.btn-4 {
-			background: var(--accent4);
-			color: #fff;
-		}
-
-		.btn-4:hover {
-			background: #8040a0;
-			color: #fff;
-		}
-
-		.btn-repo {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			gap: 8px;
-			padding: 9px 22px;
-			border-radius: 10px;
-			font-size: 0.8rem;
-			font-weight: 500;
-			text-decoration: none;
-			background: transparent;
-			border: 1px solid var(--border);
-			color: var(--ink-light);
-			transition: all 0.2s;
-			width: 100%;
-		}
-
-		.btn-repo:hover {
-			background: var(--cream);
-			border-color: #ccc;
-			color: var(--ink);
-		}
-
-		/* ─── FOOTER ─── */
-		.site-footer {
-			background: var(--white);
-			border-top: 1px solid var(--border);
-			padding: 32px 0 24px;
-		}
-
-		.footer-bottom {
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			justify-content: space-between;
-			gap: 12px;
-		}
-
-		.footer-org {
-			font-size: 0.78rem;
-			color: var(--ink-light);
-			line-height: 1.6;
-		}
-
-		.footer-org strong {
-			color: var(--ink);
-			font-weight: 600;
-		}
-
-		.footer-links {
-			display: flex;
-			gap: 20px;
-		}
-
-		.footer-links a {
-			font-size: 0.78rem;
-			color: var(--ink-light);
-			text-decoration: none;
-			transition: color 0.2s;
-			display: inline-flex;
-			align-items: center;
-			gap: 5px;
-		}
-
-		.footer-links a:hover {
-			color: var(--accent);
-		}
-
-		/* ─── ANIMATIONS ─── */
-		@keyframes fadeUp {
-			from {
-				opacity: 0;
-				transform: translateY(24px);
-			}
-
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-
-		.fade-up {
-			animation: fadeUp 0.55s ease both;
-		}
-
-		.delay-1 {
-			animation-delay: 0.1s;
-		}
-
-		.delay-2 {
-			animation-delay: 0.2s;
-		}
-
-		.delay-3 {
-			animation-delay: 0.32s;
-		}
-
-		.delay-4 {
-			animation-delay: 0.44s;
-		}
-
-		/* ─── RESPONSIVE ─── */
-		@media (max-width: 576px) {
-			.footer-bottom {
-				flex-direction: column;
-				align-items: flex-start;
-			}
-		}
-	</style>
+	<link rel="stylesheet" href="styles.css" />
+	
+	<!-- Structured Data -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "WebApplication",
+		"name": "AAF Gorpara Automation Hub",
+		"description": "Centralized portal for AAF Gorpara automation tools using Google Apps Script",
+		"url": "https://github.com/bashir-CSE/Gorpara-Automation-Portals",
+		"applicationCategory": "BusinessApplication",
+		"operatingSystem": "Web Browser",
+		"author": {
+			"@type": "Person",
+			"name": "Bashir",
+			"email": "babashir8811@gmail.com",
+			"url": "https://github.com/bashir-CSE"
+		},
+		"offers": {
+			"@type": "Offer",
+			"price": "0",
+			"priceCurrency": "USD"
+		},
+		"featureList": [
+			"Production Reporting",
+			"Production Planning", 
+			"Bill Generation",
+			"Attendance Management",
+			"Travel Expense Tracking"
+		],
+		"softwareRequirements": "Web Browser with Internet Connection",
+		"inLanguage": "en",
+		"accessMode": "Web"
+	}
+	</script>
+	
 </head>
 
 <body>
+
+	<!-- Error Notification -->
+	<div id="error-notification" style="
+		position: fixed;
+		top: 20px;
+		right: 20px;
+		background: #dc3545;
+		color: white;
+		padding: 12px 20px;
+		border-radius: 8px;
+		box-shadow: var(--shadow-lg);
+		display: none;
+		z-index: 9998;
+		max-width: 300px;
+		font-size: 0.85rem;
+	">
+		<div style="display: flex; align-items: center; gap: 8px;">
+			<i class="fas fa-exclamation-triangle"></i>
+			<span id="error-message">Failed to load resources</span>
+		</div>
+	</div>
+
+	<style>
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	</style>
 	<!-- ═══════════ CARDS ═══════════ -->
 	<section class="cards-section" id="portals">
 		<div class="container">
@@ -486,6 +210,28 @@
 					</div>
 				</div>
 
+				<!-- Card 5 -->
+				<div class="col-md-6 col-xl-3 fade-up delay-4">
+					<div class="auto-card card-5">
+						<div class="card-number">AUTOMATION — 05</div>
+						<div class="card-icon-wrap icon-5">
+							<i class="fa-solid fa-percentage"></i>
+						</div>
+						<h3 class="card-title">Attendance Bonus Generator (হাজিরা বোনাস)</h3>
+						<p class="card-desc">Generates attendance bonus based on employee attendance data. This portal
+							calculates bonuses accurately and efficiently, reducing errors and saving time.</p>
+						<div class="card-footer-area">
+							<a href="https://script.google.com/macros/s/AKfycbwR0CSqmEOKE_mQB5QuVq96guzoCjWnn0JkU-Y83iHWvrdNLXpg6S1AnvQqMh_h3weKKA/exec"
+								target="_blank" class="btn-launch btn-5">
+								<i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Portal
+							</a>
+							<a href="https://github.com/bashir-CSE/AAF-Attendance-Bonus-Generator" target="_blank"
+								class="btn-repo">
+								<i class="fa-brands fa-github"></i> View on GitHub
+							</a>
+						</div>
+					</div>
+				</div>
 			</div><!-- /row -->
 		</div>
 	</section>
@@ -513,25 +259,7 @@
 	</footer>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-	<script>
-		// ── Intersection Observer for scroll-triggered fade-up ──
-		const fadeEls = document.querySelectorAll('.fade-up');
-		const obs = new IntersectionObserver((entries) => {
-			entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; } });
-		}, { threshold: 0.1 });
-		fadeEls.forEach(el => obs.observe(el));
-
-		// ── Smooth scroll for anchor links ──
-		document.querySelectorAll('a[href^="#"]').forEach(a => {
-			a.addEventListener('click', e => {
-				const target = document.querySelector(a.getAttribute('href'));
-				if (target) {
-					e.preventDefault();
-					target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				}
-			});
-		});
-	</script>
+	<script src="script.js"></script>
 </body>
 
 </html>
