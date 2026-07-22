@@ -1,170 +1,149 @@
 // ── AAF Gorpara Automation Hub JavaScript ──
 
-// Global error handling
-window.addEventListener('error', function(e) {
-	console.error('Global error:', e.error);
-	showError('A resource failed to load. Some features may not work properly.');
-});
+// ── DOM References ──
+const loadingOverlay = document.getElementById('loading-overlay');
+const errorNotification = document.getElementById('error-notification');
+const errorMessage = document.getElementById('error-message');
+const navbar = document.querySelector('.navbar');
 
-// Resource loading tracking
-let resourcesLoaded = {
-	css: false,
-	js: false,
-	fonts: false
-};
-
-function checkAllResourcesLoaded() {
-	const allLoaded = Object.values(resourcesLoaded).every(loaded => loaded);
-	if (allLoaded) {
-		hideLoading();
-	}
-}
-
+// ── Error Handling ──
 function showError(message) {
-	const notification = document.getElementById('error-notification');
-	const messageEl = document.getElementById('error-message');
-	messageEl.textContent = message;
-	notification.style.display = 'block';
-	
-	// Auto-hide after 5 seconds
-	setTimeout(() => {
-		notification.style.display = 'none';
-	}, 5000);
+  if (!errorNotification || !errorMessage) return;
+  errorMessage.textContent = message;
+  errorNotification.classList.add('show');
+
+  setTimeout(() => {
+    errorNotification.classList.remove('show');
+  }, 5000);
 }
 
 function hideLoading() {
-	const loadingOverlay = document.getElementById('loading-overlay');
-	loadingOverlay.style.opacity = '0';
-	setTimeout(() => {
-		loadingOverlay.style.display = 'none';
-	}, 300);
+  if (loadingOverlay) {
+    loadingOverlay.classList.add('hidden');
+  }
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-	// Track CSS loading (external CSS file is loaded)
-	resourcesLoaded.css = true;
-	
-	// Track Bootstrap JS loading
-	const bootstrapScript = document.querySelector('script[src*="bootstrap"]');
-	if (bootstrapScript) {
-		bootstrapScript.onload = function() {
-			resourcesLoaded.js = true;
-			checkAllResourcesLoaded();
-		};
-		bootstrapScript.onerror = function() {
-			resourcesLoaded.js = false;
-			showError('Bootstrap library failed to load');
-			checkAllResourcesLoaded();
-		};
-	} else {
-		resourcesLoaded.js = true;
-	}
-
-	// Track font loading
-	const fontLoadTest = new FontFace('Playfair Display', 'local("Playfair Display")');
-	fontLoadTest.load().then(function() {
-		resourcesLoaded.fonts = true;
-		checkAllResourcesLoaded();
-	}).catch(function() {
-		resourcesLoaded.fonts = true; // Continue even if font fails
-		checkAllResourcesLoaded();
-	});
-
-	// Set timeout to ensure loading completes
-	setTimeout(checkAllResourcesLoaded, 3000);
-
-	// Initialize scroll animations
-	initializeScrollAnimations();
-
-	// Initialize smooth scrolling
-	initializeSmoothScrolling();
-
-	// Initialize performance monitoring
-	initializePerformanceMonitoring();
+// Global error handling
+window.addEventListener('error', function(e) {
+  console.error('Global error:', e.error);
+  showError('A resource failed to load. Some features may not work properly.');
 });
+
+// Unhandled promise rejections
+window.addEventListener('unhandledrejection', function(e) {
+  console.error('Unhandled promise rejection:', e.reason);
+  showError('An unexpected error occurred. Please refresh the page.');
+});
+
+// ── Resource Loading ──
+function initializeResources() {
+  // CSS is loaded since styles.css is in head before JS
+  // Font loading check
+  const fontCheck = new FontFace('DM Sans', 'local("DM Sans")');
+  fontCheck.load().then(() => {
+    hideLoading();
+  }).catch(() => {
+    hideLoading();
+  });
+
+  // Timeout fallback
+  setTimeout(() => {
+    hideLoading();
+  }, 2000);
+}
+
+// ── Navbar Scroll Effect ──
+function initializeNavbar() {
+  if (!navbar) return;
+
+  let lastScroll = 0;
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    lastScroll = window.pageYOffset;
+
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        if (lastScroll > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+        ticking = false;
+      });
+
+      ticking = true;
+    }
+  });
+}
 
 // ── Scroll Animations ──
 function initializeScrollAnimations() {
-	const fadeEls = document.querySelectorAll('.fade-up');
-	const obs = new IntersectionObserver((entries) => {
-		entries.forEach(e => { 
-			if (e.isIntersecting) { 
-				e.target.style.opacity = '1';
-				// Unobserve after animation
-				obs.unobserve(e.target);
-			}
-		});
-	}, { threshold: 0.1 });
-	
-	fadeEls.forEach(el => {
-		el.style.opacity = '0';
-		obs.observe(el);
-	});
+  const fadeElements = document.querySelectorAll('.fade-up');
+
+  if (!fadeElements.length) return;
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  fadeElements.forEach(el => {
+    observer.observe(el);
+  });
 }
 
 // ── Smooth Scrolling ──
 function initializeSmoothScrolling() {
-	document.querySelectorAll('a[href^="#"]').forEach(a => {
-		a.addEventListener('click', e => {
-			const target = document.querySelector(a.getAttribute('href'));
-			if (target) {
-				e.preventDefault();
-				target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-			}
-		});
-	});
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+
+      if (targetId === '#') return;
+
+      const targetElement = document.querySelector(targetId);
+
+      if (targetElement) {
+        e.preventDefault();
+
+        const navbarHeight = navbar ? navbar.offsetHeight : 0;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
 }
 
 // ── Performance Monitoring ──
 function initializePerformanceMonitoring() {
-	window.addEventListener('load', function() {
-		const navigationTiming = performance.getEntriesByType('navigation')[0];
-		const loadTime = navigationTiming.loadEventEnd - navigationTiming.loadEventStart;
-		
-		console.log(`Page load time: ${loadTime}ms`);
-		
-		// Log performance metrics if available
-		if ('performance' in window) {
-			const perfData = {
-				loadTime: loadTime,
-				domain: window.location.hostname,
-				timestamp: new Date().toISOString()
-			};
-			
-			// You can send this to an analytics service if needed
-			console.log('Performance data:', perfData);
-		}
-	});
+  window.addEventListener('load', function() {
+    if ('performance' in window) {
+      const navigationTiming = performance.getEntriesByType('navigation')[0];
+      const loadTime = navigationTiming ? navigationTiming.loadEventEnd - navigationTiming.loadEventStart : 0;
+
+      console.log(`Page load time: ${loadTime}ms`);
+    }
+  });
 }
 
-// ── Utility Functions ──
-// Helper function to safely query elements
-function safeQuerySelector(selector, context = document) {
-	const element = context.querySelector(selector);
-	if (!element) {
-		console.warn(`Element not found: ${selector}`);
-	}
-	return element;
-}
-
-// Helper function to safely query multiple elements
-function safeQuerySelectorAll(selector, context = document) {
-	const elements = context.querySelectorAll(selector);
-	if (elements.length === 0) {
-		console.warn(`No elements found: ${selector}`);
-	}
-	return elements;
-}
-
-// ── Export for external use ──
-if (typeof module !== 'undefined' && module.exports) {
-	module.exports = {
-		showError,
-		hideLoading,
-		checkAllResourcesLoaded,
-		initializeScrollAnimations,
-		initializeSmoothScrolling,
-		initializePerformanceMonitoring
-	};
-}
+// ── Initialize ──
+document.addEventListener('DOMContentLoaded', function() {
+  initializeResources();
+  initializeNavbar();
+  initializeScrollAnimations();
+  initializeSmoothScrolling();
+  initializePerformanceMonitoring();
+});
