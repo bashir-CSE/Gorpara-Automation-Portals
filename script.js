@@ -5,6 +5,8 @@ const loadingOverlay = document.getElementById('loading-overlay');
 const errorNotification = document.getElementById('error-notification');
 const errorMessage = document.getElementById('error-message');
 const navbar = document.querySelector('.navbar');
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
 
 // ── Error Handling ──
 function showError(message) {
@@ -102,6 +104,49 @@ function initializeScrollAnimations() {
   });
 }
 
+// ── Mobile Navigation ──
+function initializeMobileNav() {
+  if (!navToggle || !navLinks) return;
+
+  function openMenu() {
+    navLinks.classList.add('open');
+    navToggle.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleMenu() {
+    const isOpen = navLinks.classList.contains('open');
+    isOpen ? closeMenu() : openMenu();
+  }
+
+  // Toggle on hamburger click
+  navToggle.addEventListener('click', toggleMenu);
+
+  // Close after clicking a link (covers in-page anchors + external links)
+  navLinks.addEventListener('click', closeMenu);
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // Close when clicking outside the menu
+  document.addEventListener('click', (e) => {
+    if (!navLinks.classList.contains('open')) return;
+    if (e.target.closest('.nav-links') || e.target.closest('.nav-toggle')) return;
+    closeMenu();
+  });
+
+  // Reset state when resizing up to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) closeMenu();
+  });
+}
+
 // ── Smooth Scrolling ──
 function initializeSmoothScrolling() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -143,6 +188,7 @@ function initializePerformanceMonitoring() {
 document.addEventListener('DOMContentLoaded', function() {
   initializeResources();
   initializeNavbar();
+  initializeMobileNav();
   initializeScrollAnimations();
   initializeSmoothScrolling();
   initializePerformanceMonitoring();
