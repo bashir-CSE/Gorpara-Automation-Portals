@@ -1,261 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Automation Hub – AAF Gorpara</title>
-<meta name="description"
-  content="Centralized portal for AAF Gorpara automation tools. Streamline operations with Google Apps Script powered solutions for production tracking, planning, billing, and attendance management." />
-<meta name="keywords"
-  content="automation, AAF Gorpara, Google Apps Script, production planning, attendance bonus, travel bill, snacks bill, efficiency tools" />
-<meta name="author" content="Bashir" />
-<meta name="robots" content="index, follow" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automation Hub – AAF Gorpara</title>
+    <meta name="description"
+undefinedcontent="Centralized portal for AAF Gorpara automation tools. Streamline operations with Google Apps Script powered solutions for production tracking, planning, billing, and attendance management." />
+    <meta name="keywords"
+undefinedcontent="automation, AAF Gorpara, Google Apps Script, production planning, attendance bonus, travel bill, snacks bill, efficiency tools" />
+    <meta name="author" content="Bashir" />
+    <meta name="robots" content="index, follow" />
 
-<!-- Open Graph Meta Tags -->
-<meta property="og:title" content="Automation Hub – AAF Gorpara" />
-<meta property="og:description"
-  content="Centralized portal for AAF Gorpara automation tools. Streamline operations with Google Apps Script powered solutions." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://github.com/bashir-CSE/Gorpara-Automation-Portals" />
-<meta property="og:image" content="https://via.placeholder.com/1200x630/3a7bd5/ffffff?text=AAF+Automation+Hub" />
-<meta property="og:site_name" content="AAF Gorpara Automation Hub" />
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Automation Hub – AAF Gorpara" />
+    <meta property="og:description"
+undefinedcontent="Centralized portal for AAF Gorpara automation tools. Streamline operations with Google Apps Script powered solutions." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://github.com/bashir-CSE/Gorpara-Automation-Portals" />
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/3a7bd5/ffffff?text=AAF+Automation+Hub" />
+    <meta property="og:site_name" content="AAF Gorpara Automation Hub" />
 
-<!-- Twitter Card Meta Tags -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Automation Hub – AAF Gorpara" />
-<meta name="twitter:description" content="Centralized portal for AAF Gorpara automation tools" />
-<meta name="twitter:image" content="https://via.placeholder.com/1200x630/3a7bd5/ffffff?text=AAF+Automation+Hub" />
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Automation Hub – AAF Gorpara" />
+    <meta name="twitter:description" content="Centralized portal for AAF Gorpara automation tools" />
+    <meta name="twitter:image" content="https://via.placeholder.com/1200x630/3a7bd5/ffffff?text=AAF+Automation+Hub" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link
-  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
-  rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-<link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+undefinedhref="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
 
-</head>
+  </head>
 
-<body>
+  <body>
 
-  <!-- Loading Overlay -->
-  <div id="loading-overlay">
-    <div class="loader"></div>
-  </div>
-
-  <!-- Error Notification -->
-  <div id="error-notification">
-    <i class="fas fa-exclamation-circle"></i>
-    <span id="error-message">Failed to load resources</span>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="nav-container">
-      <a href="#" class="nav-brand" aria-label="AAF Gorpara Automation Hub Home">
-        <i class="fas fa-cubes"></i>
-        <span>Automation Hub</span>
-      </a>
-      <div class="nav-links" id="nav-links">
-        <a href="#portals">Portals</a>
-        <a href="https://github.com/bashir-CSE" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-      </div>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-      </button>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+      <div class="loader"></div>
     </div>
-  </nav>
 
-  <!-- ═══════════ CARDS ═══════════ -->
-  <main>
-    <section class="cards-section" id="portals">
-      <div class="container">
-        <!-- Section Header -->
-        <div class="section-header">
-          <span class="section-eyebrow">AAF · Gorpara</span>
-          <h2 class="section-title">Automation Tools</h2>
-          <p class="section-subtitle">
-            You don't always need expensive enterprise software to solve operational bottlenecks.
-            Sometimes, a smart idea and a script are all you need.
+    <!-- Error Notification -->
+    <div id="error-notification">
+      <i class="fas fa-exclamation-circle"></i>
+      <span id="error-message">Failed to load resources</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="nav-container">
+        <a href="#" class="nav-brand" aria-label="AAF Gorpara Automation Hub Home">
+          <i class="fas fa-cubes"></i>
+          <span>Automation Hub</span>
+        </a>
+        <div class="nav-links" id="nav-links">
+          <a href="#portals">Portals</a>
+          <a href="https://github.com/bashir-CSE" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+        </div>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"
+undefinedaria-controls="nav-links">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ═══════════ CARDS ═══════════ -->
+    <main>
+      <section class="cards-section" id="portals">
+        <div class="container">
+          <!-- Section Header -->
+          <div class="section-header">
+            <h2 class="section-title">Automation Tools</h2>
+            <p class="section-subtitle">
+              You don't always need expensive enterprise software to solve operational bottlenecks.
+              Sometimes, a smart idea and a script are all you need.
+            </p>
+          </div>
+
+          <!-- Cards Grid -->
+          <div class="cards-grid">
+
+            <!-- Card 1 -->
+            <article class="auto-card card-1 fade-up delay-1" aria-labelledby="card-1-title">
+              <div class="card-header">
+                <span class="card-number">Automation — 01</span>
+                <div class="card-icon-wrap icon-1" aria-hidden="true">
+                  <i class="fa-solid fa-chart-bar"></i>
+                </div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title" id="card-1-title">Section Wise Daily Per Hour Production Report</h3>
+                <p class="card-desc">Tracks hourly production output section-by-section. Auto-generates
+                  structured daily reports, eliminating manual tabulation and reducing reporting lag.</p>
+              </div>
+              <div class="card-footer">
+                <a
+href="https://script.google.com/a/macros/brac.net/s/AKfycbxp3LXb9Zcs4fl_i6-KyRB8mXF5Xm_dsKgz5f5C9MaLoK5KP5KIzDy3-sHQRNi_UZTMPg/exec" target="_blank"
+rel="noopener noreferrer" class="btn-launch btn-1">
+                  <span>Launch Portal</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <a href="https://github.com/bashir-CSE/Section-Wise-Daily-Per-Hour-Production-Report---AAF"
+target="_blank" rel="noopener noreferrer" class="btn-repo">
+                  <i class="fa-brands fa-github"></i> View on GitHub
+                </a>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="auto-card card-2 fade-up delay-2" aria-labelledby="card-2-title">
+              <div class="card-header">
+                <span class="card-number">Automation — 02</span>
+                <div class="card-icon-wrap icon-2" aria-hidden="true">
+                  <i class="fa-solid fa-clipboard-list"></i>
+                </div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title" id="card-2-title">Paperless Production Planning Portal</h3>
+                <p class="card-desc">A digital-first planning portal that replaces paper-based workflows.
+                  Enables planners to allocate, schedule, and track production tasks from a single interface.
+                </p>
+              </div>
+              <div class="card-footer">
+                <a
+href="https://script.google.com/macros/s/AKfycbwrXmZSX4KyUq3JNnaZu_D5VaFGrvZNQUEom-axTn1T7uaZXw-6LSq171KWMYG21q2b/exec" target="_blank"
+rel="noopener noreferrer" class="btn-launch btn-2">
+                  <span>Launch Portal</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <a href="https://github.com/bashir-CSE/Production-Planner-AAF-Gorpara" target="_blank"
+rel="noopener noreferrer" class="btn-repo">
+                  <i class="fa-brands fa-github"></i> View on GitHub
+                </a>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="auto-card card-3 fade-up delay-3" aria-labelledby="card-3-title">
+              <div class="card-header">
+                <span class="card-number">Automation — 03</span>
+                <div class="card-icon-wrap icon-3" aria-hidden="true">
+                  <i class="fa-solid fa-receipt"></i>
+                </div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title" id="card-3-title">Snack's Bill Generator (নাস্তার বিল)</h3>
+                <p class="card-desc">Automates snack billing for daily canteen or refreshment claims. Instantly
+                  generates formatted bills, saving time for both requesters and approvers.</p>
+              </div>
+              <div class="card-footer">
+                <a href="https://script.google.com/a/macros/brac.net/s/AKfycbyWQmY8zlVSarYIEpRdgk0F8E09VQjWd_e3NJMr4sfu75TJXw_QOYmOoiU4hx6-YtbM/exec" target="_blank"
+rel="noopener noreferrer" class="btn-launch btn-3">
+                  <span>Launch Portal</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+
+                <a href="https://github.com/bashir-CSE/Snack-s-Bill-Generator-for-Gorpara" target="_blank"
+  rel="noopener noreferrer" class="btn-repo">
+                  <i class="fa-brands fa-github"></i> View on GitHub
+                </a>
+              </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="auto-card card-4 fade-up delay-4" aria-labelledby="card-4-title">
+              <div class="card-header">
+                <span class="card-number">Automation — 04</span>
+                <div class="card-icon-wrap icon-4" aria-hidden="true">
+                  <i class="fa-solid fa-car-side"></i>
+                </div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title" id="card-4-title">Travel Bill Generator (যাতায়াত বিল)</h3>
+                <p class="card-desc">Simplifies travel expense claims by auto-calculating and formatting travel
+                  bills. Reduces errors and speeds up reimbursement workflows for field staff.</p>
+              </div>
+              <div class="card-footer">
+                <a
+undefinedhref="https://script.google.com/macros/s/AKfycbyS8zJyywJ4ipm_7X_3RZVYi2JR4712xgJOFIccU-T8QfVAx0SdlCsBlodkSFYa3i11/exec" target="_blank"
+undefinedrel="noopener noreferrer" class="btn-launch btn-4">
+                  <span>Launch Portal</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <a href="https://github.com/bashir-CSE/AAF-Travell-bill-generator/tree/main" target="_blank"
+undefinedrel="noopener noreferrer" class="btn-repo">
+                  <i class="fa-brands fa-github"></i> View on GitHub
+                </a>
+              </div>
+            </article>
+
+            <!-- Card 5 -->
+            <article class="auto-card card-5 fade-up delay-5" aria-labelledby="card-5-title">
+              <div class="card-header">
+                <span class="card-number">Automation — 05</span>
+                <div class="card-icon-wrap icon-5" aria-hidden="true">
+                  <i class="fa-solid fa-percentage"></i>
+                </div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title" id="card-5-title">Attendance Bonus Generator (হাজিরা বোনাস)</h3>
+                <p class="card-desc">Generates attendance bonus based on employee attendance data. This portal
+                  calculates bonuses accurately and efficiently, reducing errors and saving time.</p>
+              </div>
+              <div class="card-footer">
+                <a
+undefinedhref="https://script.google.com/macros/s/AKfycbwR0CSqmEOKE_mQB5QuVq96guzoCjWnn0JkU-Y83iHWvrdNLXpg6S1AnvQqMh_h3weKKA/exec" target="_blank"
+undefinedrel="noopener noreferrer" class="btn-launch btn-5">
+                  <span>Launch Portal</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <a href="https://github.com/bashir-CSE/AAF-Attendance-Bonus-Generator" target="_blank"
+undefinedrel="noopener noreferrer" class="btn-repo">
+                  <i class="fa-brands fa-github"></i> View on GitHub
+                </a>
+              </div>
+            </article>
+
+          </div><!-- /cards-grid -->
+        </div>
+      </section>
+    </main>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="site-footer">
+      <div class="footer-container">
+
+        <a href="#" class="footer-brand" aria-label="AAF Gorpara Automation Hub">
+          <i class="fas fa-cubes"></i>
+          <span>Automation Hub</span>
+        </a>
+
+        <div class="footer-links">
+          <a href="https://github.com/bashir-CSE" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/bashir-6923131b0/" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin-in"></i> LinkedIn
+          </a>
+          <a href="mailto:babashir8811@gmail.com">
+            <i class="fas fa-envelope"></i> Contact
+          </a>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-org">
+            &copy; 2026 <strong>Ayesha Abed Foundation</strong> — Gorpara, Manikganj. All rights reserved.
           </p>
         </div>
-
-        <!-- Cards Grid -->
-        <div class="cards-grid">
-
-          <!-- Card 1 -->
-          <article class="auto-card card-1 fade-up delay-1" aria-labelledby="card-1-title">
-            <div class="card-header">
-              <span class="card-number">Automation — 01</span>
-              <div class="card-icon-wrap icon-1" aria-hidden="true">
-                <i class="fa-solid fa-chart-bar"></i>
-              </div>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title" id="card-1-title">Section Wise Daily Per Hour Production Report</h3>
-              <p class="card-desc">Tracks hourly production output section-by-section. Auto-generates
-                structured daily reports, eliminating manual tabulation and reducing reporting lag.</p>
-            </div>
-            <div class="card-footer">
-              <a href="https://script.google.com/a/macros/brac.net/s/AKfycbxp3LXb9Zcs4fl_i6-KyRB8mXF5Xm_dsKgz5f5C9MaLoK5KP5KIzDy3-sHQRNi_UZTMPg/exec"
-                target="_blank" rel="noopener noreferrer" class="btn-launch btn-1">
-                <span>Launch Portal</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
-              <a href="https://github.com/bashir-CSE/Section-Wise-Daily-Per-Hour-Production-Report---AAF"
-                target="_blank" rel="noopener noreferrer" class="btn-repo">
-                <i class="fa-brands fa-github"></i> View on GitHub
-              </a>
-            </div>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="auto-card card-2 fade-up delay-2" aria-labelledby="card-2-title">
-            <div class="card-header">
-              <span class="card-number">Automation — 02</span>
-              <div class="card-icon-wrap icon-2" aria-hidden="true">
-                <i class="fa-solid fa-clipboard-list"></i>
-              </div>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title" id="card-2-title">Paperless Production Planning Portal</h3>
-              <p class="card-desc">A digital-first planning portal that replaces paper-based workflows.
-                Enables planners to allocate, schedule, and track production tasks from a single interface.
-              </p>
-            </div>
-            <div class="card-footer">
-              <a href="https://script.google.com/macros/s/AKfycbwrXmZSX4KyUq3JNnaZu_D5VaFGrvZNQUEom-axTn1T7uaZXw-6LSq171KWMYG21q2b/exec"
-                target="_blank" rel="noopener noreferrer" class="btn-launch btn-2">
-                <span>Launch Portal</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
-              <a href="https://github.com/bashir-CSE/Production-Planner-AAF-Gorpara" target="_blank"
-                rel="noopener noreferrer" class="btn-repo">
-                <i class="fa-brands fa-github"></i> View on GitHub
-              </a>
-            </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="auto-card card-3 fade-up delay-3" aria-labelledby="card-3-title">
-            <div class="card-header">
-              <span class="card-number">Automation — 03</span>
-              <div class="card-icon-wrap icon-3" aria-hidden="true">
-                <i class="fa-solid fa-receipt"></i>
-              </div>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title" id="card-3-title">Snack's Bill Generator (নাস্তার বিল)</h3>
-              <p class="card-desc">Automates snack billing for daily canteen or refreshment claims. Instantly
-                generates formatted bills, saving time for both requesters and approvers.</p>
-            </div>
-            <div class="card-footer">
-              <a href="https://script.google.com/macros/s/AKfycbyG2oRvUuFLR33ObzAdS3Asv0W1rrruvfMpZpgyJ2msxgBynnq-oTkT-8gjhzab0JBjgQ/exec"
-                target="_blank" rel="noopener noreferrer" class="btn-launch btn-3">
-                <span>Launch Portal</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
-
-              <!-- https://script.google.com/a/macros/brac.net/s/AKfycbyWQmY8zlVSarYIEpRdgk0F8E09VQjWd_e3NJMr4sfu75TJXw_QOYmOoiU4hx6-YtbM/exec -->
-
-              <a href="https://github.com/bashir-CSE/Snack-s-Bill-Generator-for-Gorpara" target="_blank"
-                rel="noopener noreferrer" class="btn-repo">
-                <i class="fa-brands fa-github"></i> View on GitHub
-              </a>
-            </div>
-          </article>
-
-          <!-- Card 4 -->
-          <article class="auto-card card-4 fade-up delay-4" aria-labelledby="card-4-title">
-            <div class="card-header">
-              <span class="card-number">Automation — 04</span>
-              <div class="card-icon-wrap icon-4" aria-hidden="true">
-                <i class="fa-solid fa-car-side"></i>
-              </div>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title" id="card-4-title">Travel Bill Generator (যাতায়াত বিল)</h3>
-              <p class="card-desc">Simplifies travel expense claims by auto-calculating and formatting travel
-                bills. Reduces errors and speeds up reimbursement workflows for field staff.</p>
-            </div>
-            <div class="card-footer">
-              <a href="https://script.google.com/macros/s/AKfycbyS8zJyywJ4ipm_7X_3RZVYi2JR4712xgJOFIccU-T8QfVAx0SdlCsBlodkSFYa3i11/exec"
-                target="_blank" rel="noopener noreferrer" class="btn-launch btn-4">
-                <span>Launch Portal</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
-              <a href="https://github.com/bashir-CSE/AAF-Travell-bill-generator/tree/main" target="_blank"
-                rel="noopener noreferrer" class="btn-repo">
-                <i class="fa-brands fa-github"></i> View on GitHub
-              </a>
-            </div>
-          </article>
-
-          <!-- Card 5 -->
-          <article class="auto-card card-5 fade-up delay-5" aria-labelledby="card-5-title">
-            <div class="card-header">
-              <span class="card-number">Automation — 05</span>
-              <div class="card-icon-wrap icon-5" aria-hidden="true">
-                <i class="fa-solid fa-percentage"></i>
-              </div>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title" id="card-5-title">Attendance Bonus Generator (হাজিরা বোনাস)</h3>
-              <p class="card-desc">Generates attendance bonus based on employee attendance data. This portal
-                calculates bonuses accurately and efficiently, reducing errors and saving time.</p>
-            </div>
-            <div class="card-footer">
-              <a href="https://script.google.com/macros/s/AKfycbwR0CSqmEOKE_mQB5QuVq96guzoCjWnn0JkU-Y83iHWvrdNLXpg6S1AnvQqMh_h3weKKA/exec"
-                target="_blank" rel="noopener noreferrer" class="btn-launch btn-5">
-                <span>Launch Portal</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
-              <a href="https://github.com/bashir-CSE/AAF-Attendance-Bonus-Generator" target="_blank"
-                rel="noopener noreferrer" class="btn-repo">
-                <i class="fa-brands fa-github"></i> View on GitHub
-              </a>
-            </div>
-          </article>
-
-        </div><!-- /cards-grid -->
       </div>
-    </section>
-  </main>
+    </footer>
 
-  <!-- ═══════════ FOOTER ═══════════ -->
-  <footer class="site-footer">
-    <div class="footer-container">
-
-      <a href="#" class="footer-brand" aria-label="AAF Gorpara Automation Hub">
-        <i class="fas fa-cubes"></i>
-        <span>Automation Hub</span>
-      </a>
-
-      <div class="footer-links">
-        <a href="https://github.com/bashir-CSE" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/bashir-6923131b0/" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-linkedin-in"></i> LinkedIn
-        </a>
-        <a href="mailto:babashir8811@gmail.com">
-          <i class="fas fa-envelope"></i> Contact
-        </a>
-      </div>
-      <div class="footer-bottom">
-        <p class="footer-org">
-          &copy; 2026 <strong>Ayesha Abed Foundation</strong> — Gorpara, Manikganj. All rights reserved.
-        </p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
+    <!-- Structured Data -->
+    <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -288,7 +289,7 @@
   }
   </script>
 
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 
 </html>
