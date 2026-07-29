@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "number": "Automation — 01",
+    "icon": "fa-solid fa-chart-bar",
+    "iconClass": "icon-1",
+    "title": "Section Wise Daily Per Hour Production Report",
+    "description": "Tracks hourly production output section-by-section. Auto-generates structured daily reports, eliminating manual tabulation and reducing reporting lag.",
+    "launchUrl": "https://script.google.com/a/macros/brac.net/s/AKfycbxp3LXb9Zcs4fl_i6-KyRB8mXF5Xm_dsKgz5f5C9MaLoK5KP5KIzDy3-sHQRNi_UZTMPg/exec",
+    "repoUrl": "https://github.com/bashir-CSE/Section-Wise-Daily-Per-Hour-Production-Report---AAF",
+    "btnClass": "btn-1",
+    "cardClass": "card-1"
+  },
+  {
+    "id": 2,
+    "number": "Automation — 02",
+    "icon": "fa-solid fa-clipboard-list",
+    "iconClass": "icon-2",
+    "title": "Paperless Production Planning & Costing Portal",
+    "description": "A digital-first planning portal that replaces paper-based workflows. Enables planners to allocate, schedule, and track production tasks from a single interface.",
+    "launchUrl": "https://script.google.com/macros/s/AKfycbwrXmZSX4KyUq3JNnaZu_D5VaFGrvZNQUEom-axTn1T7uaZXw-6LSq171KWMYG21q2b/exec",
+    "repoUrl": "https://github.com/bashir-CSE/Production-Planner-AAF-Gorpara",
+    "btnClass": "btn-2",
+    "cardClass": "card-2"
+  },
+  {
+    "id": 3,
+    "number": "Automation — 03",
+    "icon": "fa-solid fa-receipt",
+    "iconClass": "icon-3",
+    "title": "Snack's Bill Generator (নাস্তার বিল)",
+    "description": "Automates snack billing for daily canteen or refreshment claims. Instantly generates formatted bills, saving time for both requesters and approvers.",
+    "launchUrl": "https://script.google.com/a/macros/brac.net/s/AKfycbyWQmY8zlVSarYIEpRdgk0F8E09VQjWd_e3NJMr4sfu75TJXw_QOYmOoiU4hx6-YtbM/exec",
+    "repoUrl": "https://github.com/bashir-CSE/Snack-s-Bill-Generator-for-Gorpara",
+    "btnClass": "btn-3",
+    "cardClass": "card-3"
+  },
+  {
+    "id": 4,
+    "number": "Automation — 04",
+    "icon": "fa-solid fa-car-side",
+    "iconClass": "icon-4",
+    "title": "Travel Bill Generator (যাতায়াত বিল)",
+    "description": "Simplifies travel expense claims by auto-calculating and formatting travel bills. Reduces errors and speeds up reimbursement workflows for field staff.",
+    "launchUrl": "https://script.google.com/macros/s/AKfycbyS8zJyywJ4ipm_7X_3RZVYi2JR4712xgJOFIccU-T8QfVAx0SdlCsBlodkSFYa3i11/exec",
+    "repoUrl": "https://github.com/bashir-CSE/AAF-Travell-bill-generator/tree/main",
+    "btnClass": "btn-4",
+    "cardClass": "card-4"
+  },
+  {
+    "id": 5,
+    "number": "Automation — 05",
+    "icon": "fa-solid fa-percentage",
+    "iconClass": "icon-5",
+    "title": "Attendance Bonus Generator (হাজিরা বোনাস)",
+    "description": "Generates attendance bonus based on employee attendance data. This portal calculates bonuses accurately and efficiently, reducing errors and saving time.",
+    "launchUrl": "https://script.google.com/macros/s/AKfycbwR0CSqmEOKE_mQB5QuVq96guzoCjWnn0JkU-Y83iHWvrdNLXpg6S1AnvQqMh_h3weKKA/exec",
+    "repoUrl": "https://github.com/bashir-CSE/AAF-Attendance-Bonus-Generator",
+    "btnClass": "btn-5",
+    "cardClass": "card-5"
+  }
+]

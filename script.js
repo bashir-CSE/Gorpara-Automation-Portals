@@ -7,6 +7,7 @@ const errorMessage = document.getElementById('error-message');
 const navbar = document.querySelector('.navbar');
 const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.getElementById('nav-links');
+const cardsGrid = document.getElementById('cards-grid');
 
 // ── Error Handling ──
 function showError(message) {
@@ -36,6 +37,62 @@ window.addEventListener('unhandledrejection', function(e) {
   console.error('Unhandled promise rejection:', e.reason);
   showError('An unexpected error occurred. Please refresh the page.');
 });
+
+// ── Card Rendering from JSON ──
+function createCard(portal) {
+  const card = document.createElement('article');
+  card.className = `auto-card ${portal.cardClass} fade-up delay-${portal.id}`;
+  card.setAttribute('aria-labelledby', `card-${portal.id}-title`);
+
+  card.innerHTML = `
+    <div class="card-header">
+      <span class="card-number">${portal.number}</span>
+      <div class="card-icon-wrap ${portal.iconClass}" aria-hidden="true">
+        <i class="${portal.icon}"></i>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title" id="card-${portal.id}-title">${portal.title}</h3>
+      <p class="card-desc">${portal.description}</p>
+    </div>
+    <div class="card-footer">
+      <a href="${portal.launchUrl}" target="_blank" rel="noopener noreferrer" class="btn-launch ${portal.btnClass}">
+        <span>Launch Portal</span>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+      <a href="${portal.repoUrl}" target="_blank" rel="noopener noreferrer" class="btn-repo">
+        <i class="fa-brands fa-github"></i> View on GitHub
+      </a>
+    </div>
+  `;
+
+  return card;
+}
+
+async function loadPortals() {
+  if (!cardsGrid) return;
+
+  try {
+    const response = await fetch('portals.json');
+    if (!response.ok) {
+      throw new Error(`Failed to load portals.json: ${response.status}`);
+    }
+    const portals = await response.json();
+
+    cardsGrid.innerHTML = '';
+
+    portals.forEach(portal => {
+      const card = createCard(portal);
+      cardsGrid.appendChild(card);
+    });
+
+    // Re-initialize scroll animations for new cards
+    initializeScrollAnimations();
+  } catch (error) {
+    console.error('Error loading portals:', error);
+    showError('Failed to load automation portals. Please refresh the page.');
+  }
+}
 
 // ── Resource Loading ──
 function initializeResources() {
@@ -189,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initializeResources();
   initializeNavbar();
   initializeMobileNav();
-  initializeScrollAnimations();
   initializeSmoothScrolling();
   initializePerformanceMonitoring();
+  loadPortals();
 });
