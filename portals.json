@@ -28,35 +28,11 @@
     "number": "Automation — 03",
     "icon": "fa-solid fa-receipt",
     "iconClass": "icon-3",
-    "title": "Snack's Bill Generator (নাস্তার বিল)",
-    "description": "Automates snack billing for daily canteen or refreshment claims. Instantly generates formatted bills, saving time for both requesters and approvers.",
-    "launchUrl": "https://script.google.com/a/macros/brac.net/s/AKfycbyWQmY8zlVSarYIEpRdgk0F8E09VQjWd_e3NJMr4sfu75TJXw_QOYmOoiU4hx6-YtbM/exec",
+    "title": "Autometed Billing System",
+    "description": "Automates your billing for daily. Instantly generates formatted bills, saving time for both requesters and approvers.",
+    "launchUrl": "https://script.google.com/macros/s/AKfycbxDPlD55dBjdJhyICPBKr_wYzNQ_498vY69JoTxva9hNEPFyzD2IfSHCyXc-SElgnHR0Q/exec",
     "repoUrl": "https://github.com/bashir-CSE/Snack-s-Bill-Generator-for-Gorpara",
     "btnClass": "btn-3",
     "cardClass": "card-3"
-  },
-  {
-    "id": 4,
-    "number": "Automation — 04",
-    "icon": "fa-solid fa-car-side",
-    "iconClass": "icon-4",
-    "title": "Travel Bill Generator (যাতায়াত বিল)",
-    "description": "Simplifies travel expense claims by auto-calculating and formatting travel bills. Reduces errors and speeds up reimbursement workflows for field staff.",
-    "launchUrl": "https://script.google.com/macros/s/AKfycbyS8zJyywJ4ipm_7X_3RZVYi2JR4712xgJOFIccU-T8QfVAx0SdlCsBlodkSFYa3i11/exec",
-    "repoUrl": "https://github.com/bashir-CSE/AAF-Travell-bill-generator/tree/main",
-    "btnClass": "btn-4",
-    "cardClass": "card-4"
-  },
-  {
-    "id": 5,
-    "number": "Automation — 05",
-    "icon": "fa-solid fa-percentage",
-    "iconClass": "icon-5",
-    "title": "Attendance Bonus Generator (হাজিরা বোনাস)",
-    "description": "Generates attendance bonus based on employee attendance data. This portal calculates bonuses accurately and efficiently, reducing errors and saving time.",
-    "launchUrl": "https://script.google.com/macros/s/AKfycbwR0CSqmEOKE_mQB5QuVq96guzoCjWnn0JkU-Y83iHWvrdNLXpg6S1AnvQqMh_h3weKKA/exec",
-    "repoUrl": "https://github.com/bashir-CSE/AAF-Attendance-Bonus-Generator",
-    "btnClass": "btn-5",
-    "cardClass": "card-5"
   }
 ]
