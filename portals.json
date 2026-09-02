@@ -34,5 +34,17 @@
     "repoUrl": "https://github.com/bashir-CSE/Snack-s-Bill-Generator-for-Gorpara",
     "btnClass": "btn-3",
     "cardClass": "card-3"
+  },
+  {
+    "id": 4,
+    "number": "Automation — 04",
+    "icon": "fa-solid fa-chart-line",
+    "iconClass": "icon-4",
+    "title": "Dashboard - KPI",
+    "description": "Monitors key performance indicators in real-time to provide operational insights and data-driven decision-making.",
+    "launchUrl": "https://datastudio.google.com/reporting/0f741963-765e-4637-9764-64232839975a",
+    "repoUrl": "",
+    "btnClass": "btn-4",
+    "cardClass": "card-4"
   }
 ]
