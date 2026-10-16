@@ -2,6 +2,7 @@
   {
     "id": 1,
     "number": "Automation — 01",
+    "category": "general",
     "icon": "fa-solid fa-chart-bar",
     "iconClass": "icon-1",
     "title": "Section Wise Daily Per Hour Production Report",
@@ -14,6 +15,7 @@
   {
     "id": 2,
     "number": "Automation — 02",
+    "category": "general",
     "icon": "fa-solid fa-clipboard-list",
     "iconClass": "icon-2",
     "title": "Paperless Production Planning & Costing Portal",
@@ -26,6 +28,7 @@
   {
     "id": 3,
     "number": "Automation — 03",
+    "category": "general",
     "icon": "fa-solid fa-receipt",
     "iconClass": "icon-3",
     "title": "Autometed Billing System",
@@ -38,6 +41,7 @@
   {
     "id": 4,
     "number": "Automation — 04",
+    "category": "general",
     "icon": "fa-solid fa-chart-line",
     "iconClass": "icon-4",
     "title": "Dashboard - KPI",
@@ -46,5 +50,31 @@
     "repoUrl": "",
     "btnClass": "btn-4",
     "cardClass": "card-4"
+  },
+  {
+    "id": 5,
+    "number": "Automation — 05",
+    "category": "report",
+    "icon": "fa-solid fa-file-invoice-dollar",
+    "iconClass": "icon-5",
+    "title": "Bill by Aarong",
+    "description": "Monitors key performance indicators in real-time to provide operational insights and data-driven decision-making.",
+    "launchUrl": "https://misaafgorpara-cmd.github.io/bill-by-aarong/",
+    "repoUrl": "",
+    "btnClass": "btn-5",
+    "cardClass": "card-5"
+  },
+  {
+    "id": 6,
+    "number": "Automation — 06",
+    "category": "report",
+    "icon": "fa-solid fa-clipboard-list",
+    "iconClass": "icon-6",
+    "title": "Area Wise Finish Store Stock Report",
+    "description": "Finish Store Stock, area wise format.",
+    "launchUrl": "https://misaafgorpara-cmd.github.io/Area-Wise-Finish-Store-Stock-Report/",
+    "repoUrl": "https://github.com/misaafgorpara-cmd/Area-Wise-Finish-Store-Stock-Report",
+    "btnClass": "btn-6",
+    "cardClass": "card-6"
   }
 ]
